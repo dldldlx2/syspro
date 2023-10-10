@@ -1,31 +1,27 @@
 #include <stdio.h>
 #include <string.h>
+#include "copy.h"
 
-#define MAX_LENGTH 100
+int main(){
+	int len;
+	int max;
+	char strings[5][MAXLINE];
 
-int main() {
-    char strings[5][MAX_LENGTH];
-    int i, j;
-
-    for (i = 0; i < 5; i++) {
-        gets(strings[i]);
-    }
-
-    for (i = 0; i < 4; i++) {
-        for (j = i + 1; j < 5; j++) {
-            if (strlen(strings[i]) < strlen(strings[j])) {
-                char temp[MAX_LENGTH];
-                strcpy(temp, strings[i]);
-                strcpy(strings[i], strings[j]);
-                strcpy(strings[j], temp);
-            }
-        }
-    }
-
-    for (i = 0; i < 5; i++) {
-        printf("%s\n", strings[i]);
-    }
-
-    return 0;
+	for(len = 0; len < 5; len++){
+		gets(strings[len]);
+	}
+	for(len = 0; len < 4; len++){
+		for(max = len + 1; max < 5; max++){
+			if(strlen(strings[len]) < strlen(strings[max])){
+				char temp[MAXLINE];
+				strcpy(temp, strings[len]);
+				strcpy(strings[len], strings[max]);
+				strcpy(strings[max], temp);
+			}
+		}
+	}
+	for(len = 0; len < 5; len++){
+		printf("%s \n", strings[len]);
+	}
+	return 0;
 }
-
