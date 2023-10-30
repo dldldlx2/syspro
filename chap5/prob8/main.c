@@ -36,11 +36,6 @@ int main(int argc, char *argv[]){
         }
         current_line++;
     }
-
-    if(!found){
-        printf("해당 줄을 찾을 수 없습니다.\n");
-    }
-
     fclose(file);
     return 0;
 }
