@@ -11,9 +11,9 @@
 char type(mode_t);
 char* perm(mode_t);
 void printStat(char*, char*, struct stat*);
-void InodeprintStat(char*, char*, struct stat*);
-void op_PprintStat(char*, char*, struct stat*);
-void op_QprintStat(char*, char*, struct stat*);
+void IprintStat(char*, char*, struct stat*);
+void PprintStat(char*, char*, struct stat*);
+void QprintStat(char*, char*, struct stat*);
 
 int main(int argc, char *argv[]) {
 	DIR *dp;
@@ -35,13 +35,13 @@ int main(int argc, char *argv[]) {
 		}
 		else if(argc >= 2) {
 			if((strcmp(argv[1], "-i")) == 0) {
-				InodeprintStat(path, d -> d_name, &st);
+				IprintStat(path, d -> d_name, &st);
 			}
 			else if((strcmp(argv[1], "-p")) == 0) {
-				op_PprintStat(path, d -> d_name, &st);
+				PprintStat(path, d -> d_name, &st);
 			}
 			else if((strcmp(argv[1], "-Q")) == 0) {
-				op_QprintStat(path, d -> d_name, &st);
+				QprintStat(path, d -> d_name, &st);
 			}
 		}
 		else {
@@ -100,7 +100,7 @@ void printStat(char *pathname, char *file, struct stat *st) {
 	printf("%.12s ", ctime(&st -> st_mtime) + 4);
 	printf("%s\n", file);
 }
-void InodeprintStat(char *pathname, char *file, struct stat *st) {
+void IprintStat(char *pathname, char *file, struct stat *st) {
 	printf("%5ld ", st -> st_blocks);
 	printf("%5ld ", st -> st_ino);
 	printf("%c%s ", type(st -> st_mode), perm(st -> st_mode));
@@ -110,7 +110,7 @@ void InodeprintStat(char *pathname, char *file, struct stat *st) {
 	printf("%.12s ", ctime(&st -> st_mtime) + 4);
 	printf("%s\n", file);
 }
-void op_PprintStat(char *pathname, char *file, struct stat *st) {
+void PprintStat(char *pathname, char *file, struct stat *st) {
 	printf("%5ld ", st -> st_blocks);
 	printf("%c%s ", type(st -> st_mode), perm(st -> st_mode));
 	printf("%3d ", st -> st_nlink);
@@ -119,7 +119,7 @@ void op_PprintStat(char *pathname, char *file, struct stat *st) {
 	printf("%.12s ", ctime(&st -> st_mtime) + 4);
 	printf("%s/\n", file);
 }
-void op_QprintStat(char *pathname, char *file, struct stat *st) {
+void QprintStat(char *pathname, char *file, struct stat *st) {
 	printf("%5ld ", st -> st_blocks);
 	printf("%c%s ", type(st -> st_mode), perm(st -> st_mode));
 	printf("%3d ", st -> st_nlink);
