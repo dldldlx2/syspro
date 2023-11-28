@@ -11,10 +11,6 @@ int main(int argc, char **argv) {
         if((strcmp(argv[1], "-e")) == 0) {
                 if(argv[2] != NULL) {
                         char *output = getenv(argv[2]);
-                        if(output != NULL)
-                                fprintf("%s\n", output);
-                        else
-                                fprintf(stderr, "존재하지 않음 :%s\n", argv[2]);
 		}
 		else {
 			while(*environ != 0) {
@@ -35,7 +31,7 @@ int main(int argc, char **argv) {
                 printf("my process number : [%d]\n", getpid());
         }
         else if((strcmp(argv[1], "-p")) == 0) {
-                printf("my parent's process Number : [%d]\n", getpid());
+                printf("my parent's process Number : [%d]\n", getppid());
         }
         exit(0);
 }
